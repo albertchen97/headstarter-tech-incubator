@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+div {
+  padding: 10px;
+  background-color: aliceblue;
+}
+
+label {
+  display: inline-block;
+  width: 200px;
+}
+
+input {
+  width: 160px;
+  margin-right: 20px;
+}
+
+label,
+button {
+  margin-left: 6px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
