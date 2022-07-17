@@ -1,6 +1,6 @@
 // Authentication Component: Register & Login
 
-import "../App.css";
+// import "../App.css";
 
 // Import the authentification feature
 import {
@@ -10,7 +10,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import app from "../firebase-config";
 
 const auth = getAuth(app);
@@ -68,9 +68,7 @@ const Authentication = () => {
   };
 
   return (
-    <>
-      <h1>Tech Incubator</h1>
-
+    <Fragment>
       <div>
         <h2>Register and Login</h2>
 
@@ -109,19 +107,18 @@ const Authentication = () => {
         />
         <button onClick={login}>Log in</button>
       </div>
-      <br />
 
       <div>
-        <h4>Current User:</h4>
+        <label>Current User:</label>
         {/* Show the current logged-in email */}
         {/* User ternary operator to fix the bug that the system breaks 
           if no user in database */}
-        <p>{user ? user.email : "No user logged in"}</p>
+        {user ? user.email : "No user logged in"}
       </div>
       <div>
         <button onClick={logout}>Log out</button>
       </div>
-    </>
+    </Fragment>
   );
 };
 

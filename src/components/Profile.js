@@ -16,7 +16,7 @@ export class Profile extends React.Component {
     this.state = {
       db: "",
       username: "",
-      usertype: "company",
+      usertype: "Company",
       task: "",
     };
     this.interface = this.interface.bind(this);
@@ -29,7 +29,7 @@ export class Profile extends React.Component {
   render() {
     return (
       <div>
-        <h2>User Profile</h2>
+        <h2>Profile</h2>
         {/* Input area for username, user type, and task */}
         <label>Enter Username: </label>
         <input
@@ -48,8 +48,8 @@ export class Profile extends React.Component {
           onChange={(event) => {
             this.setState({ usertype: event.target.value });
           }}>
-          <option value="company">Company</option>
-          <option value="student">Student</option>
+          <option value="Company">Company</option>
+          <option value="Student">Student</option>
         </select>
         <br />
         <br />
@@ -66,31 +66,30 @@ export class Profile extends React.Component {
         <br />
         {/* Buttons for CRUD data operations */}
         <button id="addBtn" onClick={this.interface}>
-          Add Profile
+          Add
         </button>
-        <button id="updateBtn" onClick={this.interface}>
-          Update Profile{" "}
-        </button>
+        {/* <button id="updateBtn" onClick={this.interface}>
+          Update
+        </button> */}
         <button id="deleteBtn" onClick={this.interface}>
-          Delete Profile
+          Delete
         </button>
-        <button id="showBtn" onClick={this.interface}>
+        {/* <button id="showBtn" onClick={this.interface}>
           Show Profile
-        </button>
-        <br />
-        <br />
+        </button> */}
+        {/* <h2>Incubator List</h2>
         <table>
           <tr>
-            <td>Username</td>
             <td>User Type</td>
+            <td>Username</td>
             <td>Task</td>
           </tr>
           <tr>
-            <td id="usernameTd"></td>
             <td id="userTypeTd"></td>
+            <td id="usernameTd"></td>
             <td id="taskTd"></td>
           </tr>
-        </table>
+        </table> */}
       </div>
     );
   }
@@ -102,15 +101,15 @@ export class Profile extends React.Component {
     if (id === "addBtn") {
       this.addData();
     }
-    if (id === "updateBtn") {
-      this.updateData();
-    }
+    // if (id === "updateBtn") {
+    //   this.updateData();
+    // }
     if (id === "deleteBtn") {
       this.deleteData();
     }
-    if (id === "showBtn") {
-      this.showData();
-    }
+    // if (id === "showBtn") {
+    //   this.showData();
+    // }
   }
 
   // Get the inputs
@@ -127,9 +126,8 @@ export class Profile extends React.Component {
     const data = this.getAllInputs();
 
     // Store data to Firebase database
-    set(ref(db, "UserProfile/" + data.username), {
-      Username: data.username,
-      Usertype: data.usertype,
+    // Companies and students are stored in different folders
+    set(ref(db, data.usertype + "/" + data.username), {
       Task: data.task,
     })
       .then(() => {
@@ -139,29 +137,29 @@ export class Profile extends React.Component {
         alert("There was an error, details: " + error);
       });
   }
-  updateData() {
-    const db = this.state.db;
-    const data = this.getAllInputs();
+  // updateData() {
+  //   const db = this.state.db;
+  //   const data = this.getAllInputs();
 
-    // Update data on the Firebase database
-    update(ref(db, "UserProfile/" + data.username), {
-      Username: data.username,
-      Usertype: data.usertype,
-      Task: data.task,
-    })
-      .then(() => {
-        alert("Data was updated successfully!");
-      })
-      .catch((error) => {
-        alert("There was an error, details: " + error);
-      });
-  }
+  //   // Update data on the Firebase database
+  //   update(ref(db, data.usertype + "/" + data.username), {
+  //     Username: data.username,
+  //     Usertype: data.usertype,
+  //     Task: data.task,
+  //   })
+  //     .then(() => {
+  //       alert("Data was updated successfully!");
+  //     })
+  //     .catch((error) => {
+  //       alert("There was an error, details: " + error);
+  //     });
+  // }
   deleteData() {
     const db = this.state.db;
     const data = this.getAllInputs();
 
     // Remove data from the Firebase database
-    remove(ref(db, "UserProfile/" + data.username), {})
+    remove(ref(db, data.usertype + "/" + data.username), {})
       .then(() => {
         alert("Data was deleted successfully!");
       })
@@ -169,29 +167,25 @@ export class Profile extends React.Component {
         alert("There was an error, details: " + error);
       });
   }
-  showData() {
-    // Databse reference location
-    const dbref = ref(this.state.db);
-    // Username to show data of
-    const username = this.getAllInputs().username;
+  //   showData() {
+  //     // Databse reference location
+  //     const dbref = ref(this.state.db);
+  //     // Username to show data of
+  //     const username = this.getAllInputs().username;
 
-    // Get the user's data from Firebase and store in the snapshot
-    get(child(dbref, "UserProfile/" + username))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          // Show the data of the corresponding username
-          document.getElementById("usernameTd").innerHTML = username;
-          document.getElementById("userTypeTd").innerHTML =
-            snapshot.val().Usertype;
-          document.getElementById("taskTd").innerHTML = snapshot.val().Task;
-          //   this.setState({
-          //     usertype: snapshot.val().Usertype,
-          //     task: snapshot.val().Task,
-          //   });
-        }
-      })
-      .catch((error) => {
-        alert("Error: " + error);
-      });
-  }
+  //     // Get the user's data from Firebase and store in the snapshot
+  //     get(child(dbref, "UserProfile/" + username))
+  //       .then((snapshot) => {
+  //         if (snapshot.exists()) {
+  //           // Show the data of the corresponding username
+  //           document.getElementById("usernameTd").innerHTML = username;
+  //           document.getElementById("userTypeTd").innerHTML =
+  //             snapshot.val().Usertype;
+  //           document.getElementById("taskTd").innerHTML = snapshot.val().Task;
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         alert("Error: " + error);
+  //       });
+  //   }
 }

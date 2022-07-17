@@ -1,16 +1,20 @@
-import './App.css';
-import React from 'react';
-import Authentication from './components/Authentication';
-import {Profile} from './components/Profile';
-
+// import "./App.css";
+import React, { Fragment } from "react";
+import Authentication from "./components/Authentication";
+import { Profile } from "./components/Profile";
+import { DataTable } from "./components/DataTable";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div>
-      <Authentication />
-      <br/><br/>
+    <Fragment>
+      <h1>Tech Incubator</h1>
+      {/* <Authentication /> */}
       <Profile />
-    </div>
+      <br />
+      <br />
+      <DataTable />
+    </Fragment>
   );
 }
 
