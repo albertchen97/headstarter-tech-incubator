@@ -6,7 +6,7 @@ import app from "../firebase-config";
 import { getDatabase } from "firebase/database";
 
 // Functions for CRUD (Create, Read, Update, Delete) operations
-import { ref, set, get, update, remove, child } from "firebase/database";
+import { ref, set, push, get, update, remove, child } from "firebase/database";
 
 const databse = getDatabase(app);
 
@@ -128,11 +128,11 @@ export class Profile extends React.Component {
     // Store data to Firebase database
     // Companies and students are stored in different folders
     set(ref(db, data.usertype + "/" + data.username), {
+      UserName: data.username,
+      UserType: data.usertype,
       Task: data.task,
     })
-      .then(() => {
-        alert("Data was added successfully!");
-      })
+      .then(() => {})
       .catch((error) => {
         alert("There was an error, details: " + error);
       });
@@ -160,9 +160,7 @@ export class Profile extends React.Component {
 
     // Remove data from the Firebase database
     remove(ref(db, data.usertype + "/" + data.username), {})
-      .then(() => {
-        alert("Data was deleted successfully!");
-      })
+      .then(() => {})
       .catch((error) => {
         alert("There was an error, details: " + error);
       });
