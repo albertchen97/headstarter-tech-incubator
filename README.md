@@ -10,10 +10,10 @@ The companies and students should be able to register and edit their profile. Co
 
 ### Frontend
 
-React.js
+* React.js
 
 ### Backend & Database
 
-Firebase Authentication
+* Firebase Authentication
 
-Firebase Realtime Database
+* Firebase Realtime Database
