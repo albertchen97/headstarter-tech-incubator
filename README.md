@@ -1,6 +1,6 @@
 # Headstarter Summer 2022 Company Case - Tech Inubator
 
-## Requirement
+## Project Requirement
 
 Build a website for tech incubators to find college graduate students to help them do their tasks.
 
