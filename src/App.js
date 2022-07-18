@@ -10,7 +10,7 @@ function App() {
   return (
     <Fragment>
       <h1>Tech Incubator</h1>
-      {/* <Authentication /> */}
+      <Authentication />
       <h2>Profile</h2>
       <Profile />
       <br />
