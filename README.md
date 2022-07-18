@@ -8,5 +8,10 @@ The companies and students should be able to register and edit their profile. Co
 
 ## Implementation
 
-Frontend: React.js
-Backend & Database: Firebase Authentication & Firebase Realtime Database
+### Frontend: 
+
+React.js
+
+### Backend & Database: 
+
+Firebase Authentication & Firebase Realtime Database
